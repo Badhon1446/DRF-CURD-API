@@ -8,7 +8,9 @@ class ReviewSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class MakeOrderSerializer(serializers.ModelSerializer):
-    reviews = ReviewSerializer(many=True, read_only=True)
+    # reviews = serializers.StringRelatedField(many=True, read_only=True)
+    #reviews = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    reviews = serializers.HyperlinkedRelatedField(many=True, read_only=True,view_name='reivew_link')
     class Meta:
         model = models.MakeOrder
         fields = '__all__'
